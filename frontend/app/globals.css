@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+
+
+html,
+body {
+  background-color: #000;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tailwind v4 preflight resets input/button appearance — restore sensible defaults */
+@layer base {
+  input,
+  button,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  input::placeholder {
+    color: #444;
+  }
+}
