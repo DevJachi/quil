@@ -1,6 +1,6 @@
-# Quix
+# Quix (AKA Quil)
 
-Quix is a self-hosted deployment platform. Paste a public GitHub URL, give your project a name, and Quix clones the repo, builds a Docker image using Railpack, runs the container, and routes it to `projectname.localhost` through Caddy — all from a browser UI.
+Quix is a local first, self-hosted deployment platform. Paste a public GitHub URL, give your project a name, and Quix clones the repo, builds a Docker image using Railpack, runs the container, and routes it to `projectname.localhost` through Caddy — all from a browser UI.
 
 ## How it works
 
