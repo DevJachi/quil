@@ -19,7 +19,7 @@ export default function DeployForm({ onDeploy }: Props) {
     setLoading(true);
     setError(null);
     try {
-      const { data } = await axios.post("http://localhost:3001/api/deploy", {
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}/api/deploy`, {
         projectName,
         githubUrl,
       });

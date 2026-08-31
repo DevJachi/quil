@@ -13,7 +13,7 @@ export default function DeploymentCard({ deployment }: Props) {
   const logsEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const es = new EventSource("http://localhost:3001/api/logs/stream");
+    const es = new EventSource(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}/api/logs/stream`);
 
     es.onopen = () => {
       console.log("SSE connected");
