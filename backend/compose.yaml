@@ -1,0 +1,62 @@
+services:
+
+  buildkit:
+    image: moby/buildkit
+    container_name: buildkit
+    privileged: true
+    networks:
+      - quix-net
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    # Load our JSON config at startup so the routes array always exists.
+    # This prevents the Admin API POST from failing with "unknown path".
+    command: caddy run --config /etc/caddy/config.json --adapter json
+    ports:
+      - "80:80"
+      - "443:443"
+      - "2019:2019"
+    volumes:
+      - ./caddy/config.json:/etc/caddy/config.json
+      - caddy_data:/data
+      - caddy_config:/config
+    extra_hosts:
+      # Lets Caddy reach services on the host machine (the mapped container ports).
+      - "host.docker.internal:host-gateway"
+    networks:
+      - quix-net
+
+  backend:
+    build: .
+    container_name: backend
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./clones:/app/clones
+    depends_on:
+      - caddy
+      - buildkit
+    networks:
+      - quix-net
+
+  frontend:
+    build: ../frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3001
+    depends_on:
+      - backend
+
+networks:
+  quix-net:
+    name: quix-net
+
+volumes:
+  caddy_data:
+  caddy_config:
