@@ -50,6 +50,9 @@ This starts four services:
 **4. Open the UI**
 
 Go to `http://localhost:3000`
+<img width="1669" height="945" alt="quil-not-hosted-1" src="https://github.com/user-attachments/assets/4dc78f61-7c50-49dc-8e71-1527e179a01f" />
+
+
 
 Enter a public GitHub repo URL and a project name, then click Deploy.
 
@@ -60,6 +63,8 @@ Once the build finishes, your app is live at:
 ```
 http://projectname.localhost
 ```
+<img width="1669" height="945" alt="quil-hosted-1" src="https://github.com/user-attachments/assets/ec59c78c-6f4a-4023-a8ad-f55a0751d396" />
+
 
 Replace `projectname` with whatever name you entered in the form.
 
